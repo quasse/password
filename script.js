@@ -79,6 +79,12 @@ function generatePassword() {
 
   var specialCheck = confirm("Click okay to include special characters");
 
+  // Booleans to check for character types in the password
+  var lowercaseConfirm = false;
+  var uppercaseConfirm = false;
+  var numericConfirm = false;
+  var specialConfirm = false;
+
   //Fill in password with characters using for loop
   for (i = 0; i < length; i++) {
     //Select character randomly
@@ -88,15 +94,20 @@ function generatePassword() {
     switch (character) {
       case 1:
         if (lowercaseCheck) {
-          console.log("one");
+          // Notify that character type has been added to password
+          lowercaseConfirm = true;
+          // Select random item from appropriate character array and add it to the password array
+          password[i] = lowercase[Math.floor(Math.random() * lowercase.length)];
           break;
         } else {
+          // Otherwise, repeat
           i--;
           break;
         }
       case 2:
         if (uppercaseCheck) {
-          console.log("two");
+          uppercaseConfirm = true;
+          password[i] = uppercase[Math.floor(Math.random() * uppercase.length)];
           break;
         } else {
           i--;
@@ -104,7 +115,8 @@ function generatePassword() {
         }
       case 3:
         if (numericCheck) {
-          console.log("three");
+          numericConfirm = true;
+          password[i] = numeric[Math.floor(Math.random() * numeric.length)];
           break;
         } else {
           i--;
@@ -112,7 +124,8 @@ function generatePassword() {
         }
       case 4:
         if (specialCheck) {
-          console.log("four");
+          specialConfirm = true;
+          password[i] = special[Math.floor(Math.random() * special.length)];
           break;
         } else {
           i--;
@@ -121,7 +134,24 @@ function generatePassword() {
     }
   }
 
-  return length;
+  // Check to make sure all confirmed characters have been added to password
+  if (lowercaseCheck) {
+    //if lowercaseConfirm is still false, it means the character type has not been added
+    if (!lowercaseConfirm) {
+      //So add one random character of that typeto the password array in a random place
+      password[Math.floor(Math.random() * password.length)] = Math.floor(
+        Math.random() * lowercase.length
+      );
+    }
+  }
+  if (uppercaseCheck) {
+    if (!uppercaseConfirm) {
+      //To do
+    }
+  }
+
+  // Return the array as a string
+  return password.join("");
 }
 
 // Get references to the #generate element
