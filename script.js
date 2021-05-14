@@ -87,12 +87,13 @@ function generatePassword() {
 
   //Fill in password with characters using for loop
   for (i = 0; i < length; i++) {
-    //Select character randomly
-    var character = Math.round(Math.random() * (4 - 1) + 1);
+    //Select number between 1 and 4.
+    var character = Math.round(Math.random() * 3 + 1);
 
-    //Depending on variable's 1-4 value, add a certain character to the password array
+    //Depending on character's 1-4 value, add a certain character to the password array
     switch (character) {
       case 1:
+        // check if the user has indicated they would like this character type included
         if (lowercaseCheck) {
           // Notify that character type has been added to password
           lowercaseConfirm = true;
