@@ -105,13 +105,15 @@ function generatePassword() {
       specialConfirm = true;
       password[i] = special[Math.floor(Math.random() * special.length)];
     } else {
+      // If the random number hits a character type the user has not selected, repeat loop
       i--;
     }
   }
 
   // Check to make sure every character type indicated by the user has been added
   if (lowercaseCheck && !lowercaseConfirm) {
-    //If one of the character types are not in the password, add a random one to a random spot in password
+    //If one of the character types are not in the password, add a random one of that type
+    //to a random spot in password array
     password[Math.round(Math.random() * password.length)] =
       lowercase[Math.floor(Math.random() * lowercase.length)];
   }
