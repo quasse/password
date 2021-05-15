@@ -109,30 +109,24 @@ function generatePassword() {
     }
   }
 
-  console.log(password);
-
   // Check to make sure every character type indicated by the user has been added
-  if (!(lowercaseCheck && lowercaseConfirm)) {
-    console.log("lower case is not in the password");
+  if (lowercaseCheck && !lowercaseConfirm) {
     //If one of the character types are not in the password, add a random one to a random spot in password
     password[Math.round(Math.random() * password.length)] =
       lowercase[Math.floor(Math.random() * lowercase.length)];
   }
 
-  if (!(uppercaseCheck && uppercaseConfirm)) {
-    console.log("uppercase is not in the password");
+  if (uppercaseCheck && !uppercaseConfirm) {
     password[Math.round(Math.random() * password.length)] =
       uppercase[Math.floor(Math.random() * uppercase.length)];
   }
 
-  if (!(numericCheck && numericConfirm)) {
-    console.log("numerals are not in the password");
+  if (numericCheck && !numericConfirm) {
     password[Math.round(Math.random() * password.length)] =
       numeric[Math.floor(Math.random() * numeric.length)];
   }
 
-  if (!(specialCheck && specialConfirm)) {
-    console.log("special characters are not in the password");
+  if (specialCheck && !specialConfirm) {
     password[Math.round(Math.random() * password.length)] =
       special[Math.floor(Math.random() * special.length)];
   }
