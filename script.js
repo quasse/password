@@ -1,5 +1,4 @@
 // Assignment code here
-
 //Variables used to check character types that will be used
 var lowercaseCheck = false;
 
@@ -73,23 +72,19 @@ function generatePassword() {
 
   var special = ["/", "?", "%", "$", "&", "*", "!", "#"];
 
-  // Array to store password characters
-  var password = [];
-
-  var length = prompt(
-    "How long would you like your password (between 8 and 128 characters)?"
-  );
-
-  // Function to get character types for password
-  getUserInput();
-
-  //Ask user for character types
-
   // Booleans to check for character types in the password
   var lowercaseConfirm = false;
   var uppercaseConfirm = false;
   var numericConfirm = false;
   var specialConfirm = false;
+  // Array to store password characters
+  var password = [];
+
+  // Ask user for length of the password
+  var length = getLength();
+
+  // Ask user for character types
+  getCharType();
 
   //Fill in password with characters using for loop
   for (i = 0; i < length; i++) {
@@ -115,74 +110,30 @@ function generatePassword() {
     } else {
       i--;
     }
-
-    //Depending on character's 1-4 value, add a certain character to the password array
-    // switch (character) {
-    //   case 1:
-    //     // check if the user has indicated they would like this character type included
-    //     if (lowercaseCheck) {
-    //       // Notify that character type has been added to password
-    //       lowercaseConfirm = true;
-    //       // Select random item from appropriate character array and add it to the password array
-    //       password[i] = lowercase[Math.floor(Math.random() * lowercase.length)];
-    //       break;
-    //     } else {
-    //       // Otherwise, repeat
-    //       i--;
-    //       break;
-    //     }
-    //   case 2:
-    //     if (uppercaseCheck) {
-    //       uppercaseConfirm = true;
-    //       password[i] = uppercase[Math.floor(Math.random() * uppercase.length)];
-    //       break;
-    //     } else {
-    //       i--;
-    //       break;
-    //     }
-    //   case 3:
-    //     if (numericCheck) {
-    //       numericConfirm = true;
-    //       password[i] = numeric[Math.floor(Math.random() * numeric.length)];
-    //       break;
-    //     } else {
-    //       i--;
-    //       break;
-    //     }
-    //   case 4:
-    //     if (specialCheck) {
-    //       specialConfirm = true;
-    //       password[i] = special[Math.floor(Math.random() * special.length)];
-    //       break;
-    //     } else {
-    //       i--;
-    //       break;
-    //     }
-    // }
-  }
-
-  // Check to make sure all confirmed characters have been added to password
-  if (lowercaseCheck) {
-    //if lowercaseConfirm is still false, it means the character type has not been added
-    if (!lowercaseConfirm) {
-      //So add one random character of that typeto the password array in a random place
-      password[Math.floor(Math.random() * password.length)] = Math.floor(
-        Math.random() * lowercase.length
-      );
-    }
-  }
-  if (uppercaseCheck) {
-    if (!uppercaseConfirm) {
-      //To do
-    }
   }
 
   // Return the array as a string
   return password.join("");
 }
 
+//Function that gets the length of the password and checks the type
+var getLength = function () {
+  var typeCheck = false;
+  // This loop will keep going as long as an invalid input is entered
+  while (!typeCheck) {
+    var input = prompt("Please enter a number between 8 and 12");
+    //If the type of the input is not valid, repeat the question
+    if (input < 8 || input > 128 || isNaN(input)) {
+      alert("Please enter a valid number");
+    } else {
+      typeCheck = true;
+    }
+  }
+  return input;
+};
+
 //Function that asks user to indicate which characters they would like to use
-var getUserInput = function () {
+var getCharType = function () {
   lowercaseCheck = confirm("Click okay to include lowercase letters");
 
   uppercaseCheck = confirm("Click okay to include uppercase letters");
