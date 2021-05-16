@@ -142,7 +142,7 @@ var getLength = function () {
   var typeCheck = false;
   // This loop will keep going as long as an invalid input is entered
   while (!typeCheck) {
-    var input = prompt("Please enter a number between 8 and 12");
+    var input = prompt("Please enter a number between 8 and 128");
     //If the type of the input is not valid, repeat the question
     if (input < 8 || input > 128 || isNaN(input)) {
       alert("Please enter a valid number");
